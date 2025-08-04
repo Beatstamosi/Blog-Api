@@ -4,7 +4,7 @@ import {
   loginHandler,
   signUpHandler,
   userAlreadySignedUp,
-} from "../controllers/authControllers.js";
+} from "../controllers/authController.js";
 import { validateSignUp } from "../middlewares/validateSignUp.js";
 import { handleValidationErrors } from "../middlewares/handleValidationErrors.js";
 import { validateLogin } from "../middlewares/validateLogin.js";
