@@ -4,6 +4,7 @@ import LogOut from "./Authentication/LogOut/LogOut.jsx";
 import Login from "./Authentication/Login/Login.jsx";
 import SignUp from "./Authentication/Sign Up/SignUp.jsx";
 import RequireAuth from "./Authentication/RequireAuth.jsx";
+import SignUpAuthor from "./Authentication/SignUp Author/SignUpAuthor.js";
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
   {
     path: "/sign-up",
     element: <SignUp />,
+  },
+  {
+    path: "/sign-up-author",
+    element: <SignUpAuthor />,
   },
   {
     path: "/logout",

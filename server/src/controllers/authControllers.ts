@@ -20,6 +20,7 @@ const signUpHandler = async (req: Request, res: Response) => {
           firstname: req.body.firstName,
           lastname: req.body.lastName,
           password: hashedPassword,
+          isAuthor: req.body.isAuthor ?? false,
         },
       });
       res.status(201).json({ message: "User signed up successfully." });
@@ -64,13 +65,14 @@ const loginHandler = (req: Request, res: Response, next: NextFunction) => {
 function getUser(req: Request, res: Response) {
   if (req.user) {
     // Send limited user data (avoid sending password, etc.)
-    const { id, email, firstname, lastname } = req.user;
+    const { id, email, firstname, lastname, isAuthor } = req.user;
     res.json({
       user: {
         id,
         email,
         firstName: firstname,
         lastName: lastname,
+        isAuthor,
       },
     });
   } else {
