@@ -20,6 +20,9 @@ const getSinglePost = async (req: Request, res: Response) => {
       where: {
         id: postId,
       },
+      include: {
+        comments: true,
+      },
     });
 
     if (!post) {
