@@ -1,0 +1,43 @@
+import prisma from "../lib/prisma.js";
+import { Request, Response } from "express";
+import handleError from "../services/handleError.js";
+
+const createComment = async (req: Request, res: Response) => {
+  const postId = req.params.postId;
+  const usernameId = req.body.usernameId;
+
+  const post = await prisma.post.findUnique({ where: { id: postId } });
+  if (!post) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+
+  try {
+    const comment = await prisma.comment.create({
+      data: {
+        text: req.body.text,
+        usernameId,
+        postId,
+      },
+    });
+    res.status(201).json({ comment });
+  } catch (error) {
+    handleError(error, res);
+  }
+};
+
+const deleteComment = async (req: Request, res: Response) => {
+  const commentId = req.params.commentId;
+
+  try {
+    const comment = await prisma.comment.delete({
+      where: {
+        id: commentId,
+      },
+    });
+    res.status(200).json({ comment });
+  } catch (error) {
+    handleError(error, res);
+  }
+};
+
+export { createComment, deleteComment };
