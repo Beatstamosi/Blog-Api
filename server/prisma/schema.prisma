@@ -16,8 +16,8 @@ datasource db {
 model User {
   id        String    @id @default(uuid())
   email     String    @unique
-  firstname String
-  lastname  String
+  firstName String
+  lastName  String
   password  String
   isAuthor  Boolean   @default(false)
   comments  Comment[]

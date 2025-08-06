@@ -9,11 +9,7 @@ import SignUpAuthor from "./Authentication/SignUp Author/SignUpAuthor.js";
 const routes = [
   {
     path: "/",
-    element: (
-      <RequireAuth>
-        <App />
-      </RequireAuth>
-    ),
+    element: <App />,
     errorElement: <ErrorPage />,
   },
   {
