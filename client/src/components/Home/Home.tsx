@@ -1,17 +1,13 @@
-import { useAuth } from "../Authentication/useAuth";
+import Header from "../Header/Header";
+import DisplayPosts from "../DisplayPosts/DisplayPosts";
 
 function Home() {
-  const { user } = useAuth();
-
-  // HEADER for blog
   // Display posts
 
   return (
     <>
-      <h1>{user?.email || "No user found"}</h1>
-      <p>
-        {user?.firstName} {user?.lastName}
-      </p>
+      <Header />;
+      <DisplayPosts />
     </>
   );
 }

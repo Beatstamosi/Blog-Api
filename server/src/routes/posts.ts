@@ -12,11 +12,11 @@ import validateIsAuthor from "../middlewares/validateIsAuthor.js";
 
 const postsRouter = Router();
 
-postsRouter.use(validateJWTToken);
-
 postsRouter.get("/", getAllPosts);
 postsRouter.get("/:postId", getSinglePost);
 
+// check for authentication via JWT Token
+postsRouter.use(validateJWTToken);
 postsRouter.post("/post", validateIsAuthor, createPost);
 
 postsRouter.put("/post/:postId", validateIsAuthor, updatePost);

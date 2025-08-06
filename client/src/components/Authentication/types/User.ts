@@ -1,3 +1,6 @@
+import type { Post } from "../../types/Post";
+import type { Comments } from "../../types/Comments";
+
 export type User = {
   id: string;
   email: string;
@@ -5,27 +8,6 @@ export type User = {
   lastName: string;
   password: string;
   isAuthor: boolean;
-  comments: Comment[];
+  comments: Comments[];
   posts: Post[];
-};
-
-export type Post = {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: Date;
-  published: boolean;
-  author: User;
-  userId: string;
-  comments: Comment[];
-};
-
-export type Comment = {
-  id: string;
-  text: string;
-  username: User;
-  usernameId: string;
-  postedAt: Date;
-  Post: Post;
-  postId: string;
 };
