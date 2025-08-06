@@ -6,6 +6,8 @@ import LogOut from "../Authentication/LogOut/LogOut";
 function NavBar() {
   const { user, isAuthenticated } = useAuth();
 
+  console.log(user);
+
   return (
     <div className={style.navBarWrapper}>
       <div>
@@ -14,6 +16,7 @@ function NavBar() {
         </Link>
         {user?.isAuthor && <Link to={"/admin"}>Admin</Link>}
       </div>
+      <div>{isAuthenticated && <span>Hello {user?.firstName}</span>}</div>
       <div>
         {!isAuthenticated ? (
           <Link to={"/login"} className={style.btn}>

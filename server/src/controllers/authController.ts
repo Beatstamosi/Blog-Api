@@ -65,13 +65,13 @@ const loginHandler = (req: Request, res: Response, next: NextFunction) => {
 function getUser(req: Request, res: Response) {
   if (req.user) {
     // Send limited user data (avoid sending password, etc.)
-    const { id, email, firstname, lastname, isAuthor } = req.user;
+    const { id, email, firstName, lastName, isAuthor } = req.user;
     res.json({
       user: {
         id,
         email,
-        firstName: firstname,
-        lastName: lastname,
+        firstName,
+        lastName,
         isAuthor,
       },
     });

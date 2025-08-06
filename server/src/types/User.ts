@@ -1,8 +1,8 @@
 export type User = {
   id: string;
   email: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   password: string;
   isAuthor: boolean;
   comments: Comment[];
