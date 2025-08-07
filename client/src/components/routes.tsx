@@ -6,6 +6,7 @@ import SignUp from "./Authentication/Sign Up/SignUp.jsx";
 import RequireAuth from "./Authentication/RequireAuth.jsx";
 import SignUpAuthor from "./Authentication/SignUp Author/SignUpAuthor.js";
 import Home from "./Home/Home.js";
+import DisplaySinglePost from "./DisplaySinglePost/DisplaySinglePost.js";
 
 const routes = [
   {
@@ -16,6 +17,10 @@ const routes = [
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/:postId",
+        element: <DisplaySinglePost />,
       },
     ],
   },
@@ -38,6 +43,10 @@ const routes = [
         <LogOut />
       </RequireAuth>
     ),
+  },
+  {
+    path: "/error",
+    element: <ErrorPage />,
   },
 ];
 

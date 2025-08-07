@@ -5,8 +5,8 @@ export type User = {
   lastName: string;
   password: string;
   isAuthor: boolean;
-  comments: Comment[];
-  posts: Post[];
+  comments?: Comment[];
+  posts?: Post[];
 };
 
 export type Post = {

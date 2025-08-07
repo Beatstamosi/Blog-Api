@@ -4,7 +4,10 @@ import handleError from "../services/handleError.js";
 
 const createComment = async (req: Request, res: Response) => {
   const postId = req.params.postId;
-  const usernameId = req.body.usernameId;
+  const usernameId = req.user?.id;
+
+  if (!usernameId)
+    return res.status(403).json({ error: "Unauthorized access" });
 
   const post = await prisma.post.findUnique({ where: { id: postId } });
   if (!post) {

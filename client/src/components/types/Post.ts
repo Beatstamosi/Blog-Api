@@ -1,4 +1,5 @@
 import type { User } from "../Authentication/types/User";
+import type { Comments } from "./Comments";
 
 export type Post = {
   id: string;
@@ -8,5 +9,5 @@ export type Post = {
   published: boolean;
   author: User;
   userId: string;
-  comments: Comment[];
+  comments: Comments[];
 };
