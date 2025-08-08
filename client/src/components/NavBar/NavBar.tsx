@@ -6,11 +6,9 @@ import LogOut from "../Authentication/LogOut/LogOut";
 function NavBar() {
   const { user, isAuthenticated } = useAuth();
 
-  console.log(user);
-
   return (
     <div className={style.navBarWrapper}>
-      <div>
+      <div className={style.navBarLinks}>
         <Link to={"/"}>
           <h2>MyBlog</h2>
         </Link>

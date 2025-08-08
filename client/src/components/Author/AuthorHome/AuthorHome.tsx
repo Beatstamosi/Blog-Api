@@ -34,45 +34,51 @@ function AuthorHome() {
   // Show Comments Button
 
   return (
-    <div>
-      <div>
-        <Link to="/author/write-post">Write new Post</Link>
+    <div className={style.container}>
+      <div className={style.header}>
+        <Link to="/author/write-post" className={style.writePostBtn}>
+          Write new Post
+        </Link>
       </div>
-      <div>
-        <table>
+      <div className={style.tableWrapper}>
+        <table className={style.table}>
           <thead>
             <tr>
-              <th scope="col">No.</th>
-              <th scope="col">Title</th>
-              <th scope="col">Author</th>
-              <th scope="col">Published?</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-              <th scope="col">Show Comments</th>
+              <th>No.</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Published?</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Show Comments</th>
             </tr>
           </thead>
           <tbody>
             {posts?.map((post, index) => (
-              <div key={post.id}>
-                <th scope="row">{index + 1}</th>
+              <tr key={post.id}>
+                <td>{index + 1}</td>
                 <td>{post.title}</td>
                 <td>{post.author.firstName + " " + post.author.lastName}</td>
                 <td>
                   <label className={style.switch}>
-                    <input type="checkbox" checked={post.published} />
+                    <input type="checkbox" checked={post.published} readOnly />
                     <span className={`${style.slider} ${style.round}`}></span>
                   </label>
                 </td>
                 <td>
-                  <Link to={`/edit-post/${post.id}`}>Edit Post</Link>
+                  <Link to={`/edit-post/${post.id}`} className={style.link}>
+                    Edit
+                  </Link>
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button className={style.deleteBtn}>Delete</button>
                 </td>
                 <td>
-                  <button>Show Comments ({post.comments.length})</button>
+                  <button className={style.commentBtn}>
+                    Show Comments ({post.comments.length})
+                  </button>
                 </td>
-              </div>
+              </tr>
             ))}
           </tbody>
         </table>

@@ -1,13 +1,17 @@
-import { useRef, useImperativeHandle, forwardRef } from "react";
+import { useImperativeHandle, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import type { Editor as TinyMCEEditor } from "tinymce";
 
-export type TextEditorRef = {
+export type TextEditorRefType = {
   getContent: () => string;
   clear: () => void;
 };
 
-const TextEditor = forwardRef<TextEditorRef>((_, ref) => {
+type Props = {
+  ref?: React.Ref<TextEditorRefType>;
+};
+
+function TextEditor({ ref }: Props) {
   const editorRef = useRef<TinyMCEEditor | null>(null);
 
   useImperativeHandle(ref, () => ({
@@ -55,6 +59,6 @@ const TextEditor = forwardRef<TextEditorRef>((_, ref) => {
       }}
     />
   );
-});
+}
 
 export default TextEditor;

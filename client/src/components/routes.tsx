@@ -10,6 +10,7 @@ import DisplaySinglePost from "./DisplaySinglePost/DisplaySinglePost.js";
 import AuthorHome from "./Author/AuthorHome/AuthorHome.js";
 import RequireAuthor from "./Authentication/RequireAuthor.js";
 import WritePost from "./Author/AuthorHome/WritePost/WritePost.js";
+import NavBar from "./NavBar/NavBar.js";
 
 const routes = [
   {
@@ -52,6 +53,7 @@ const routes = [
     errorElement: <ErrorPage />,
     element: (
       <RequireAuthor>
+        <NavBar />
         <AuthorHome />
       </RequireAuthor>
     ),

@@ -32,6 +32,13 @@
   text-decoration: none;
 }
 
+.navBarLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;

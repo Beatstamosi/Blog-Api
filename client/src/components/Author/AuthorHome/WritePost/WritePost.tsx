@@ -1,17 +1,17 @@
-// src/pages/Author/AuthorHome/WritePost/WritePost.tsx
 import style from "./WritePost.module.css";
 import TextEditor from "./Editor/Editor.js";
-import type { TextEditorRef } from "./Editor/Editor.js";
+import type { TextEditorRefType } from "./Editor/Editor.js";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../../../NavBar/NavBar.js";
 
 function WritePost() {
   const [title, setTitle] = useState("");
-  const editorRef = useRef<TextEditorRef>(null);
+  const textEditorRef = useRef<TextEditorRefType>(null);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const htmlContent = editorRef.current?.getContent();
+    const htmlContent = textEditorRef.current?.getContent();
 
     if (!htmlContent || !title.trim()) return;
 
@@ -31,26 +31,33 @@ function WritePost() {
     );
 
     if (result.ok) {
-      editorRef.current?.clear();
+      textEditorRef.current?.clear();
       setTitle("");
       navigate("/author");
     }
   };
 
   return (
-    <div className={style.card}>
-      <label htmlFor="title">Post Title</label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        placeholder="What a great day"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <TextEditor ref={editorRef} />
-      <button onClick={handleSubmit}>Submit</button>
-    </div>
+    <>
+      <NavBar />
+      <div className={style.card}>
+        <label htmlFor="title">Title</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="What a great day"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <div className={style.editorWrapper}>
+          <TextEditor ref={textEditorRef} />
+        </div>
+
+        <button onClick={handleSubmit}>Create Post</button>
+      </div>
+    </>
   );
 }
 
