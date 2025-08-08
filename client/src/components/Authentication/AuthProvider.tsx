@@ -65,6 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     loading,
     fetchUser,
     setUser,
+    isAuthor: user?.isAuthor,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

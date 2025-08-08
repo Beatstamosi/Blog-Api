@@ -6,4 +6,5 @@ export default interface AuthContextType {
   loading: boolean;
   fetchUser: () => void;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  isAuthor: boolean | undefined;
 }
