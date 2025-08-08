@@ -1,0 +1,56 @@
+import style from "./WritePost.module.css";
+import Tiptap from "../../../Tiptap";
+import type { TiptapRef } from "../../../Tiptap";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
+function WritePost() {
+  const [title, setTitle] = useState("");
+  const editorRef = useRef<TiptapRef>(null);
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    const htmlContent = editorRef.current?.getHTML();
+    if (!htmlContent) return;
+
+    const result = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/posts/post`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          title,
+          content: htmlContent,
+        }),
+      }
+    );
+
+    if (result.ok) {
+      editorRef.current?.clear();
+      setTitle("");
+      navigate("/author");
+    }
+  };
+
+  return (
+    <div className={style.card}>
+      <label htmlFor="title">Post Title</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        placeholder="What a great day"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <Tiptap ref={editorRef} />
+
+      <button onClick={handleSubmit}>Submit</button>
+    </div>
+  );
+}
+
+export default WritePost;

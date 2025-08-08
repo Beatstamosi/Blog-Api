@@ -28,6 +28,7 @@ function AuthorHome() {
 
   // ---- TODO ----
   // Edit Button
+
   // Publish / Unpublish Button
   // Delete Button
   // Show Comments Button
@@ -52,8 +53,8 @@ function AuthorHome() {
           </thead>
           <tbody>
             {posts?.map((post, index) => (
-              <>
-                <th scope="row">{index}</th>
+              <div key={post.id}>
+                <th scope="row">{index + 1}</th>
                 <td>{post.title}</td>
                 <td>{post.author.firstName + " " + post.author.lastName}</td>
                 <td>
@@ -63,7 +64,7 @@ function AuthorHome() {
                   </label>
                 </td>
                 <td>
-                  <button>Edit</button>
+                  <Link to={`/edit-post/${post.id}`}>Edit Post</Link>
                 </td>
                 <td>
                   <button>Delete</button>
@@ -71,7 +72,7 @@ function AuthorHome() {
                 <td>
                   <button>Show Comments ({post.comments.length})</button>
                 </td>
-              </>
+              </div>
             ))}
           </tbody>
         </table>

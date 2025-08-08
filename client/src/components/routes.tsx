@@ -7,6 +7,9 @@ import RequireAuth from "./Authentication/RequireAuth.jsx";
 import SignUpAuthor from "./Authentication/SignUp Author/SignUpAuthor.js";
 import Home from "./Home/Home.js";
 import DisplaySinglePost from "./DisplaySinglePost/DisplaySinglePost.js";
+import AuthorHome from "./Author/AuthorHome/AuthorHome.js";
+import RequireAuthor from "./Authentication/RequireAuthor.js";
+import WritePost from "./Author/AuthorHome/WritePost/WritePost.js";
 
 const routes = [
   {
@@ -43,6 +46,20 @@ const routes = [
         <LogOut />
       </RequireAuth>
     ),
+  },
+  {
+    path: "/author",
+    element: (
+      <RequireAuthor>
+        <AuthorHome />
+      </RequireAuthor>
+    ),
+    children: [
+      {
+        path: "/write-post",
+        element: <WritePost />
+      }
+    ]
   },
   {
     path: "/error",
