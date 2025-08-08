@@ -1,17 +1,19 @@
+// src/pages/Author/AuthorHome/WritePost/WritePost.tsx
 import style from "./WritePost.module.css";
-import Tiptap from "../../../Tiptap";
-import type { TiptapRef } from "../../../Tiptap";
-import { useState, useRef } from "react";
+import TextEditor from "./Editor/Editor.js";
+import type { TextEditorRef } from "./Editor/Editor.js";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function WritePost() {
   const [title, setTitle] = useState("");
-  const editorRef = useRef<TiptapRef>(null);
+  const editorRef = useRef<TextEditorRef>(null);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const htmlContent = editorRef.current?.getHTML();
-    if (!htmlContent) return;
+    const htmlContent = editorRef.current?.getContent();
+
+    if (!htmlContent || !title.trim()) return;
 
     const result = await fetch(
       `${import.meta.env.VITE_API_BASE_URL}/posts/post`,
@@ -46,8 +48,7 @@ function WritePost() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <Tiptap ref={editorRef} />
-
+      <TextEditor ref={editorRef} />
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

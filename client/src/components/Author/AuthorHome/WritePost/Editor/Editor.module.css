@@ -1,0 +1,36 @@
+.wrapper {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar button {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toolbar button:hover {
+  background-color: #e0e0e0;
+}
+
+.editor {
+  min-height: 300px;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.6;
+}

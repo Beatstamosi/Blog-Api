@@ -14,7 +14,7 @@ function NavBar() {
         <Link to={"/"}>
           <h2>MyBlog</h2>
         </Link>
-        {user?.isAuthor && <Link to={"/admin"}>Admin</Link>}
+        {user?.isAuthor && <Link to={"/author"}>Admin</Link>}
       </div>
       <div>{isAuthenticated && <span>Hello {user?.firstName}</span>}</div>
       <div>

@@ -36,7 +36,7 @@ function AuthorHome() {
   return (
     <div>
       <div>
-        <Link to="/create-post">Write new Post</Link>
+        <Link to="/author/write-post">Write new Post</Link>
       </div>
       <div>
         <table>

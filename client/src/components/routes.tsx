@@ -49,17 +49,16 @@ const routes = [
   },
   {
     path: "/author",
+    errorElement: <ErrorPage />,
     element: (
       <RequireAuthor>
         <AuthorHome />
       </RequireAuthor>
     ),
-    children: [
-      {
-        path: "/write-post",
-        element: <WritePost />
-      }
-    ]
+  },
+  {
+    path: "/author/write-post",
+    element: <WritePost />,
   },
   {
     path: "/error",
