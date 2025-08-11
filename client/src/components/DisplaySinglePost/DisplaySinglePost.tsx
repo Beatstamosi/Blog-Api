@@ -11,7 +11,7 @@ function DisplaySinglePost() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchComment = async () => {
+    const fetchPost = async () => {
       try {
         const result = await fetch(
           `${import.meta.env.VITE_API_BASE_URL}/posts/${postId}`
@@ -31,7 +31,7 @@ function DisplaySinglePost() {
       }
     };
 
-    fetchComment();
+    fetchPost();
   }, [navigate, postId]);
 
   if (loading) return <div>Loading...</div>;

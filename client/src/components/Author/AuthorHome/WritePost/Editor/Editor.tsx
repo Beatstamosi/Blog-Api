@@ -9,9 +9,10 @@ export type TextEditorRefType = {
 
 type Props = {
   ref?: React.Ref<TextEditorRefType>;
+  content: string;
 };
 
-function TextEditor({ ref }: Props) {
+function TextEditor({ ref, content = "<p>Write your article</p>" }: Props) {
   const editorRef = useRef<TinyMCEEditor | null>(null);
 
   useImperativeHandle(ref, () => ({
@@ -25,7 +26,7 @@ function TextEditor({ ref }: Props) {
       onInit={(_evt, editor) => {
         editorRef.current = editor;
       }}
-      initialValue="<p>Write your article</p>"
+      initialValue={content}
       init={{
         height: 500,
         menubar: false,

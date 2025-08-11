@@ -66,7 +66,10 @@ function AuthorHome() {
                   </label>
                 </td>
                 <td>
-                  <Link to={`/edit-post/${post.id}`} className={style.link}>
+                  <Link
+                    to={`/author/edit-post/${post.id}`}
+                    className={style.link}
+                  >
                     Edit
                   </Link>
                 </td>

@@ -11,6 +11,7 @@ import AuthorHome from "./Author/AuthorHome/AuthorHome.js";
 import RequireAuthor from "./Authentication/RequireAuthor.js";
 import WritePost from "./Author/AuthorHome/WritePost/WritePost.js";
 import NavBar from "./NavBar/NavBar.js";
+import EditPost from "./EditPost/EditPost.js";
 
 const routes = [
   {
@@ -61,6 +62,10 @@ const routes = [
   {
     path: "/author/write-post",
     element: <WritePost />,
+  },
+  {
+    path: "/author/edit/:postId",
+    element: <EditPost />,
   },
   {
     path: "/error",
