@@ -6,32 +6,74 @@ import style from "./AuthorHome.module.css";
 function AuthorHome() {
   const [posts, setPosts] = useState<Post[] | undefined>();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts`);
+  const fetchPosts = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts`);
 
-        const data = await res.json();
+      const data = await res.json();
 
-        if (res) {
-          setPosts(data.posts);
-        } else {
-          throw new Error("Posts could not be fetched");
-        }
-      } catch (e) {
-        console.error("Error fetching Posts: ", e);
+      if (res) {
+        setPosts(data.posts);
+      } else {
+        throw new Error("Posts could not be fetched");
       }
-    };
+    } catch (e) {
+      console.error("Error fetching Posts: ", e);
+    }
+  };
 
+  useEffect(() => {
     fetchPosts();
   }, []);
 
-  // ---- TODO ----
-  // Edit Button
+  const togglePublish = async (postId: string) => {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/posts/post/${postId}/publish`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
 
-  // Publish / Unpublish Button
-  // Delete Button
-  // Show Comments Button
+    const data = await res.json();
+
+    if (res.ok && posts) {
+      const index = posts?.findIndex((post) => postId === post.id);
+
+      if (index !== -1 && index !== undefined) {
+        const updatedPosts = [...posts];
+        updatedPosts[index] = data.post;
+        setPosts(updatedPosts);
+      }
+    }
+  };
+
+  const deletePost = async (postId: string) => {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/posts/post/${postId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+
+    if (res.ok && posts) {
+      const index = posts.findIndex((post) => post.id === postId);
+
+      if (index !== -1 && index !== undefined) {
+        const updatedPosts = [...posts];
+        setPosts(updatedPosts.splice(index, 1));
+      }
+    }
+  };
+
+  // Show Comments Button --> new route
 
   return (
     <div className={style.container}>
@@ -61,7 +103,11 @@ function AuthorHome() {
                 <td>{post.author.firstName + " " + post.author.lastName}</td>
                 <td>
                   <label className={style.switch}>
-                    <input type="checkbox" checked={post.published} readOnly />
+                    <input
+                      type="checkbox"
+                      checked={post.published}
+                      onChange={() => togglePublish(post.id)}
+                    />
                     <span className={`${style.slider} ${style.round}`}></span>
                   </label>
                 </td>
@@ -74,12 +120,19 @@ function AuthorHome() {
                   </Link>
                 </td>
                 <td>
-                  <button className={style.deleteBtn}>Delete</button>
+                  <button
+                    className={style.deleteBtn}
+                    onClick={() => deletePost(post.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
                 <td>
-                  <button className={style.commentBtn}>
-                    Show Comments ({post.comments.length})
-                  </button>
+                  <Link to={`/author/${post.id}/show-comments`}>
+                    <button className={style.commentBtn}>
+                      Show Comments ({post.comments.length})
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
