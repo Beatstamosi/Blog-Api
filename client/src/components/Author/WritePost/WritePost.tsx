@@ -3,7 +3,7 @@ import TextEditor from "./Editor/Editor.js";
 import type { TextEditorRefType } from "./Editor/Editor.js";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../../../NavBar/NavBar.js";
+import NavBar from "../../NavBar/NavBar.js";
 
 function WritePost() {
   const [title, setTitle] = useState("");

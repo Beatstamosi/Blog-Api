@@ -73,8 +73,6 @@ function AuthorHome() {
     }
   };
 
-  // Show Comments Button --> new route
-
   return (
     <div className={style.container}>
       <div className={style.header}>

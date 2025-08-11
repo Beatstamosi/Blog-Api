@@ -9,9 +9,10 @@ import Home from "./Home/Home.js";
 import DisplaySinglePost from "./DisplaySinglePost/DisplaySinglePost.js";
 import AuthorHome from "./Author/AuthorHome/AuthorHome.js";
 import RequireAuthor from "./Authentication/RequireAuthor.js";
-import WritePost from "./Author/AuthorHome/WritePost/WritePost.js";
+import WritePost from "./Author/WritePost/WritePost.js";
 import NavBar from "./NavBar/NavBar.js";
 import EditPost from "./EditPost/EditPost.js";
+import ShowComments from "./Author/ShowComments/ShowComments.js";
 
 const routes = [
   {
@@ -66,6 +67,10 @@ const routes = [
   {
     path: "/author/edit/:postId",
     element: <EditPost />,
+  },
+  {
+    path: "/author/:postId/show-comments",
+    element: <ShowComments />,
   },
   {
     path: "/error",

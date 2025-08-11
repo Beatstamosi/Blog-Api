@@ -1,6 +1,6 @@
 import style from "./WritePost.module.css";
-import TextEditor from "../Author/AuthorHome/WritePost/Editor/Editor";
-import type { TextEditorRefType } from "../Author/AuthorHome/WritePost/Editor/Editor";
+import TextEditor from "../Author/WritePost/Editor/Editor";
+import type { TextEditorRefType } from "../Author/WritePost/Editor/Editor";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";

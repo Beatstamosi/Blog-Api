@@ -4,9 +4,12 @@ import validateIsAuthor from "../middlewares/validateIsAuthor.js";
 import {
   createComment,
   deleteComment,
+  getAllComments,
 } from "../controllers/commentController.js";
 
 const commentRouter = Router();
+
+commentRouter.get("/all-comments/:postId", getAllComments);
 
 commentRouter.use(validateJWTToken);
 
