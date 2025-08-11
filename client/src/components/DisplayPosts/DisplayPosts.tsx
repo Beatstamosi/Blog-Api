@@ -8,7 +8,9 @@ function DisplayPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/posts/published`
+        );
 
         const data = await res.json();
 
@@ -27,7 +29,11 @@ function DisplayPosts() {
 
   return (
     <>
-      {posts && posts.map((post) => <PostPreview post={post} key={post.id} />)}
+      {posts ? (
+        posts.map((post) => <PostPreview post={post} key={post.id} />)
+      ) : (
+        <p>No published posts yet.</p>
+      )}
     </>
   );
 }

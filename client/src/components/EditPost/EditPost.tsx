@@ -1,4 +1,4 @@
-import style from "./WritePost.module.css";
+import style from "./EditPost.module.css";
 import TextEditor from "../Author/WritePost/Editor/Editor";
 import type { TextEditorRefType } from "../Author/WritePost/Editor/Editor";
 import { useRef, useState, useEffect } from "react";
@@ -10,7 +10,7 @@ function EditPost() {
   const { postId } = useParams();
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState<Post | undefined>();
-  const [title, setTitle] = useState(post?.title ?? "");
+  const [title, setTitle] = useState("");
   const textEditorRef = useRef<TextEditorRefType>(null);
   const navigate = useNavigate();
 
@@ -25,6 +25,7 @@ function EditPost() {
 
         if (result.ok) {
           setPost(data.post);
+          setTitle(data.post.title);
         } else {
           navigate("/error");
         }
@@ -44,7 +45,7 @@ function EditPost() {
     if (!htmlContent || !title.trim()) return;
 
     const result = await fetch(
-      `${import.meta.env.VITE_API_BASE_URL}/posts//post/${postId}`,
+      `${import.meta.env.VITE_API_BASE_URL}/posts/post/${postId}`,
       {
         method: "PUT",
         headers: {
@@ -77,7 +78,6 @@ function EditPost() {
           type="text"
           name="title"
           id="title"
-          placeholder="What a great day"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -86,7 +86,7 @@ function EditPost() {
           <TextEditor ref={textEditorRef} content={post.content} />
         </div>
 
-        <button onClick={handleSubmit}>Create Post</button>
+        <button onClick={handleSubmit}>Save Post</button>
       </div>
     </>
   );

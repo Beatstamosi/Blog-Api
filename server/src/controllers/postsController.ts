@@ -4,7 +4,30 @@ import handleError from "../services/handleError.js";
 
 const getAllPosts = async (req: Request, res: Response) => {
   try {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      include: {
+        author: true,
+        comments: true,
+      },
+    });
+
+    res.status(200).json({ posts });
+  } catch (error: unknown) {
+    handleError(error, res);
+  }
+};
+
+const getPublishedPosts = async (req: Request, res: Response) => {
+  try {
+    const posts = await prisma.post.findMany({
+      where: {
+        published: true,
+      },
+      include: {
+        author: true,
+        comments: true,
+      },
+    });
 
     res.status(200).json({ posts });
   } catch (error: unknown) {
@@ -21,7 +44,17 @@ const getSinglePost = async (req: Request, res: Response) => {
         id: postId,
       },
       include: {
-        comments: true,
+        author: true,
+        comments: {
+          include: {
+            username: {
+              select: {
+                firstName: true,
+                lastName: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -36,12 +69,16 @@ const getSinglePost = async (req: Request, res: Response) => {
 };
 
 const createPost = async (req: Request, res: Response) => {
+  if (!req.user?.id) {
+    return res.status(403).json({ error: "Missing user id" });
+  }
+
   try {
     const post = await prisma.post.create({
       data: {
         title: req.body.title,
         content: req.body.content,
-        userId: req.body.userId,
+        userId: req.user?.id,
       },
     });
 
@@ -119,6 +156,7 @@ const deletePost = async (req: Request, res: Response) => {
 
 export {
   getAllPosts,
+  getPublishedPosts,
   getSinglePost,
   createPost,
   updatePost,

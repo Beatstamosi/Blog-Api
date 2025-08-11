@@ -12,6 +12,9 @@ const getAllComments = async (req: Request, res: Response) => {
       where: {
         postId: postId,
       },
+      include: {
+        username: true,
+      },
     });
 
     if (comments) {
@@ -39,7 +42,7 @@ const createComment = async (req: Request, res: Response) => {
   try {
     const comment = await prisma.comment.create({
       data: {
-        text: req.body.text,
+        text: req.body.comment,
         usernameId,
         postId,
       },

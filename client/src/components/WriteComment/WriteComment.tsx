@@ -16,7 +16,7 @@ function WriteComment({ postId }: WriteCommentProps) {
     e.preventDefault();
 
     const result = await fetch(
-      `${import.meta.env.VITE_API_BASE_URL}/${postId}/comment`,
+      `${import.meta.env.VITE_API_BASE_URL}/comment/${postId}/comment`,
       {
         method: "POST",
         headers: {

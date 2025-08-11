@@ -38,17 +38,7 @@ function AuthorHome() {
       }
     );
 
-    const data = await res.json();
-
-    if (res.ok && posts) {
-      const index = posts?.findIndex((post) => postId === post.id);
-
-      if (index !== -1 && index !== undefined) {
-        const updatedPosts = [...posts];
-        updatedPosts[index] = data.post;
-        setPosts(updatedPosts);
-      }
-    }
+    if (res.ok) fetchPosts();
   };
 
   const deletePost = async (postId: string) => {
@@ -63,13 +53,8 @@ function AuthorHome() {
       }
     );
 
-    if (res.ok && posts) {
-      const index = posts.findIndex((post) => post.id === postId);
-
-      if (index !== -1 && index !== undefined) {
-        const updatedPosts = [...posts];
-        setPosts(updatedPosts.splice(index, 1));
-      }
+    if (res.ok) {
+      fetchPosts();
     }
   };
 

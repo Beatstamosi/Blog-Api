@@ -1,0 +1,61 @@
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #777;
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 3rem;
+}
+
+.content h2,
+.content h3 {
+  margin-top: 1.5rem;
+}
+
+.content p {
+  margin: 1rem 0;
+}
+
+.commentSection {
+  border-top: 1px solid #eee;
+  padding-top: 2rem;
+}
+
+.comments {
+  margin-top: 1rem;
+}
+
+.noComments {
+  color: #888;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 2rem;
+}

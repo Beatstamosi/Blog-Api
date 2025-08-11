@@ -6,6 +6,7 @@ import {
   updatePost,
   togglePublish,
   deletePost,
+  getPublishedPosts,
 } from "../controllers/postsController.js";
 import validateJWTToken from "../middlewares/validateJWTToken.js";
 import validateIsAuthor from "../middlewares/validateIsAuthor.js";
@@ -13,6 +14,7 @@ import validateIsAuthor from "../middlewares/validateIsAuthor.js";
 const postsRouter = Router();
 
 postsRouter.get("/", getAllPosts);
+postsRouter.get("/published", getPublishedPosts);
 postsRouter.get("/:postId", getSinglePost);
 
 // check for authentication via JWT Token

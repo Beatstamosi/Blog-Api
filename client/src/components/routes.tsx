@@ -65,7 +65,7 @@ const routes = [
     element: <WritePost />,
   },
   {
-    path: "/author/edit/:postId",
+    path: "/author/edit-post/:postId",
     element: <EditPost />,
   },
   {

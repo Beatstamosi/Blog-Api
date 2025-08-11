@@ -7,10 +7,12 @@ interface PostPreviewProps {
 }
 
 function PostPreview({ post }: PostPreviewProps) {
-  const previewText =
-    post.content.slice(0, 50) + (post.content.length > 50 ? "..." : "");
   const publishedOn = new Date(post.createdAt).toDateString();
   const authorName = post.author.firstName + " " + post.author.lastName;
+  const previewText =
+    post.content
+      .replace(/<[^>]+>/g, "") // Strip HTML tags
+      .slice(0, 50) + (post.content.length > 50 ? "..." : "");
 
   return (
     <Link to={`/${post.id}`} className={style.card}>

@@ -9,7 +9,7 @@ export type TextEditorRefType = {
 
 type Props = {
   ref?: React.Ref<TextEditorRefType>;
-  content: string;
+  content?: string;
 };
 
 function TextEditor({ ref, content = "<p>Write your article</p>" }: Props) {
